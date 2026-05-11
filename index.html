@@ -10,8 +10,9 @@
 <style>
   :root {
     --cream: #F5F0E8;
-    --stone: #C4B9A8;
-    --terracotta: #C4704A;
+    --stone: #6B5F4D;        /* darkened for WCAG AA on cream */
+    --stone-light: #C4B9A8;  /* original tone for decorative use only (lines, on dark) */
+    --terracotta: #A85A38;   /* darkened for WCAG AA on cream */
     --charcoal: #1A1A18;
     --charcoal-mid: #3A3A36;
   }
@@ -177,7 +178,7 @@
     display: block;
     width: 32px;
     height: 1px;
-    background: var(--stone);
+    background: var(--stone-light);
     flex-shrink: 0;
   }
 
@@ -352,7 +353,7 @@
     top: 10%;
     height: 80%;
     width: 1px;
-    background: var(--stone);
+    background: var(--stone-light);
     opacity: 0.4;
   }
 
@@ -400,7 +401,7 @@
     display: block;
     width: 32px;
     height: 1px;
-    background: var(--stone);
+    background: var(--stone-light);
     flex-shrink: 0;
   }
 
@@ -497,7 +498,7 @@
     font-size: 10px;
     letter-spacing: 0.35em;
     text-transform: uppercase;
-    color: var(--stone);
+    color: var(--stone-light);
     display: flex;
     align-items: center;
     gap: 16px;
@@ -508,7 +509,7 @@
     display: block;
     width: 32px;
     height: 1px;
-    background: var(--stone);
+    background: var(--stone-light);
     flex-shrink: 0;
   }
 
@@ -565,7 +566,7 @@
     font-family: 'Libre Baskerville', serif;
     font-size: 13px;
     line-height: 1.8;
-    color: var(--stone);
+    color: #D4CCBD;
   }
 
   /* ─── ECOSYSTEM TEASER ───────────────────────────── */
@@ -601,7 +602,7 @@
     display: block;
     width: 32px;
     height: 1px;
-    background: var(--stone);
+    background: var(--stone-light);
     flex-shrink: 0;
   }
 
@@ -737,7 +738,7 @@
     font-family: 'Libre Baskerville', serif;
     font-style: italic;
     font-size: 13px;
-    color: var(--stone);
+    color: #D4CCBD;
     line-height: 1.7;
   }
 
@@ -746,9 +747,8 @@
     font-size: 9px;
     letter-spacing: 0.35em;
     text-transform: uppercase;
-    color: var(--stone);
+    color: #B8AC97;
     margin-bottom: 28px;
-    opacity: 0.6;
   }
 
   .footer__links {
@@ -763,7 +763,7 @@
     font-size: 11px;
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: var(--stone);
+    color: #D4CCBD;
     text-decoration: none;
     transition: color 0.3s;
   }
@@ -781,15 +781,14 @@
     transition: color 0.3s;
   }
 
-  .footer__email:hover { color: var(--terracotta); }
+  .footer__email:hover { color: #E89B7A; }
 
   .footer__location {
     font-family: 'Tenor Sans', sans-serif;
     font-size: 10px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--stone);
-    opacity: 0.6;
+    color: #B8AC97;
   }
 
   .footer__bottom {
@@ -803,16 +802,14 @@
     font-size: 10px;
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: var(--stone);
-    opacity: 0.4;
+    color: #B8AC97;
   }
 
   .footer__mark {
     font-family: 'Playfair Display', serif;
     font-style: italic;
     font-size: 11px;
-    color: var(--stone);
-    opacity: 0.3;
+    color: #B8AC97;
   }
 
   /* ─── SCROLL ANIMATIONS ───────────────────────────── */
