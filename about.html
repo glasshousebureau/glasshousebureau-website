@@ -6,995 +6,756 @@
 <title>About — Glasshouse Studio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Tenor+Sans&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Tenor+Sans&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <style>
+
+  /* ── TOKENS ── */
   :root {
-    --cream: #F5F0E8;
-    --stone: #6B5F4D;
-    --stone-light: #C4B9A8;
-    --terracotta: #9E5232;
-    --charcoal: #1A1A18;
-    --charcoal-mid: #3A3A36;
+    --cream:       #F5F0E8;
+    --cream-dark:  #EDE7DA;
+    --stone:       #C4B9A8;
+    --stone-light: #DDD6CB;
+    --terracotta:  #C4704A;
+    --charcoal:    #1A1A18;
+    --ink:         #3A3A36;
+
+    --font-display: 'Playfair Display', serif;
+    --font-label:   'Tenor Sans', sans-serif;
+    --font-body:    'Libre Baskerville', serif;
   }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
-
   body {
     background: var(--cream);
     color: var(--charcoal);
-    font-family: 'Libre Baskerville', serif;
-    overflow-x: hidden;
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
   }
 
-  /* ─── NAV ─────────────────────────────────────────── */
-
-  nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 100;
+  /* ── NAV ── */
+  .nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 28px 56px;
+    padding: 28px 64px;
+    border-bottom: 1px solid var(--stone-light);
+    position: sticky;
+    top: 0;
     background: var(--cream);
-    border-bottom: 1px solid rgba(196,185,168,0.3);
+    z-index: 100;
   }
-
   .nav__wordmark {
-    font-family: 'Tenor Sans', sans-serif;
-    font-size: 12px;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
+    font-family: var(--font-display);
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: 0.05em;
     color: var(--charcoal);
     text-decoration: none;
   }
-
   .nav__links {
     display: flex;
-    align-items: center;
     gap: 40px;
     list-style: none;
   }
-
   .nav__links a {
-    font-family: 'Tenor Sans', sans-serif;
+    font-family: var(--font-label);
     font-size: 10px;
     letter-spacing: 0.25em;
     text-transform: uppercase;
-    color: var(--charcoal);
+    color: var(--ink);
     text-decoration: none;
-    transition: color 0.3s;
+    transition: color 0.2s;
+  }
+  .nav__links a:hover,
+  .nav__links a[aria-current="page"] { color: var(--terracotta); }
+
+  /* ── HERO ── */
+  .hero {
+    padding: 120px 64px 100px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .hero__label {
+    font-family: var(--font-label);
+    font-size: 10px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--stone);
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.1s forwards;
+  }
+  .hero__label::before {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: var(--stone);
+    flex-shrink: 0;
+  }
+  .hero__heading {
+    font-family: var(--font-display);
+    font-size: clamp(52px, 6vw, 88px);
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: var(--charcoal);
+    max-width: 900px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.2s forwards;
+  }
+  .hero__heading em { font-style: italic; }
+
+  .full-rule {
+    border: none;
+    border-top: 1px solid var(--stone-light);
   }
 
-  .nav__links a:hover { color: var(--terracotta); }
-  .nav__links a.active { color: var(--terracotta); }
-
-  .nav__contact {
-    font-family: 'Tenor Sans', sans-serif;
+  /* ── PHILOSOPHY SPLIT ── */
+  .philosophy {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    padding: 100px 64px;
+    max-width: 1200px;
+    margin: 0 auto;
+    align-items: start;
+  }
+  .philosophy__left { position: sticky; top: 120px; }
+  .philosophy__label {
+    font-family: var(--font-label);
     font-size: 10px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--stone);
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .philosophy__label::before {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: var(--stone);
+  }
+  .philosophy__heading {
+    font-family: var(--font-display);
+    font-size: clamp(32px, 3vw, 44px);
+    font-weight: 400;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    margin-bottom: 24px;
+  }
+  .philosophy__heading em { font-style: italic; }
+  .philosophy__accent {
+    width: 48px;
+    height: 1px;
+    background: var(--terracotta);
+    margin-bottom: 24px;
+  }
+  .philosophy__intro {
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.9;
+    color: var(--ink);
+  }
+  .philosophy__right {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+  .philosophy__body {
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.9;
+    color: var(--ink);
+  }
+  .philosophy__body p + p { margin-top: 20px; }
+  .philosophy__pull {
+    font-family: var(--font-display);
+    font-size: clamp(19px, 1.8vw, 24px);
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1.5;
+    color: var(--charcoal);
+    border-left: 2px solid var(--terracotta);
+    padding-left: 28px;
+    margin: 4px 0;
+  }
+
+  /* ── PHOTO PLACEHOLDER ── */
+  .photo-section {
+    background: var(--cream-dark);
+    border-top: 1px solid var(--stone-light);
+    border-bottom: 1px solid var(--stone-light);
+    padding: 80px 64px;
+  }
+  .photo-section__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .photo-section__label {
+    font-family: var(--font-label);
+    font-size: 10px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--stone);
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .photo-section__label::before {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: var(--stone);
+  }
+  .photo-placeholder {
+    width: 100%;
+    aspect-ratio: 16 / 7;
+    background: var(--stone-light);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    position: relative;
+    overflow: hidden;
+  }
+  /* Corner brackets */
+  .photo-placeholder::before {
+    content: '';
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 48px;
+    height: 48px;
+    border-top: 1px solid var(--stone);
+    border-left: 1px solid var(--stone);
+  }
+  .photo-placeholder::after {
+    content: '';
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: 48px;
+    height: 48px;
+    border-bottom: 1px solid var(--stone);
+    border-right: 1px solid var(--stone);
+  }
+  .photo-placeholder__label {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 18px;
+    color: var(--stone);
+    letter-spacing: 0.02em;
+  }
+  .photo-placeholder__sub {
+    font-family: var(--font-label);
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--stone);
+    opacity: 0.7;
+  }
+  /* Replace .photo-placeholder with this when photo is ready:
+     .photo-real { width: 100%; aspect-ratio: 16/7; object-fit: cover; object-position: center; display: block; }
+  */
+
+  /* ── TEAM ── */
+  .team-section {
+    background: var(--charcoal);
+    padding: 100px 64px;
+  }
+  .team-section__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .team-section__label {
+    font-family: var(--font-label);
+    font-size: 10px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--stone);
+    margin-bottom: 64px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .team-section__label::before {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: var(--stone);
+  }
+  .team {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+  }
+  .team-member__number {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 11px;
+    color: var(--stone);
+    display: block;
+    margin-bottom: 20px;
+    opacity: 0.6;
+  }
+  .team-member__name {
+    font-family: var(--font-display);
+    font-size: clamp(28px, 3vw, 40px);
+    font-weight: 400;
+    color: var(--cream);
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
+  .team-member__role {
+    font-family: var(--font-label);
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    margin-bottom: 32px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid rgba(196, 185, 168, 0.2);
+  }
+  .team-member__bio {
+    font-family: var(--font-body);
+    font-size: 14px;
+    line-height: 1.9;
+    color: var(--stone);
+  }
+  .team-member__bio p + p { margin-top: 18px; }
+  .team-member__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 32px;
+  }
+  .tag {
+    font-family: var(--font-label);
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--stone);
+    border: 1px solid rgba(196, 185, 168, 0.3);
+    padding: 6px 14px;
+  }
+
+  /* ── PARTNERSHIP STATEMENT ── */
+  .partnership {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 100px 64px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    border-bottom: 1px solid var(--stone-light);
+  }
+  .partnership__heading {
+    font-family: var(--font-display);
+    font-size: clamp(32px, 3vw, 46px);
+    font-weight: 400;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+  .partnership__heading em { font-style: italic; }
+  .partnership__body {
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.9;
+    color: var(--ink);
+  }
+  .partnership__body p + p { margin-top: 20px; }
+
+  /* ── CTA ── */
+  .cta-section {
+    padding: 120px 64px;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .cta__label {
+    font-family: var(--font-label);
+    font-size: 10px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--stone);
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+  }
+  .cta__label::before,
+  .cta__label::after {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: var(--stone);
+  }
+  .cta__heading {
+    font-family: var(--font-display);
+    font-size: clamp(36px, 4vw, 58px);
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    color: var(--charcoal);
+    margin-bottom: 32px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .cta__body {
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.9;
+    color: var(--ink);
+    max-width: 480px;
+    margin: 0 auto 48px;
+  }
+  .cta__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    font-family: var(--font-label);
+    font-size: 11px;
     letter-spacing: 0.25em;
     text-transform: uppercase;
     color: var(--charcoal);
     text-decoration: none;
     border-bottom: 1px solid var(--charcoal);
-    padding-bottom: 2px;
-    transition: color 0.3s, border-color 0.3s;
-  }
-
-  .nav__contact:hover {
-    color: var(--terracotta);
-    border-color: var(--terracotta);
-  }
-
-  /* ─── PAGE HERO ───────────────────────────────────── */
-
-  .page-hero {
-    padding: 160px 56px 100px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    align-items: end;
-    border-bottom: 1px solid rgba(196,185,168,0.3);
-  }
-
-  .page-hero__label {
-    font-family: 'Tenor Sans', sans-serif;
-    font-size: 10px;
-    letter-spacing: 0.35em;
-    text-transform: uppercase;
-    color: var(--stone);
-    margin-bottom: 32px;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    opacity: 0;
-    animation: fadeUp 0.8s ease 0.2s forwards;
-  }
-
-  .page-hero__label::before {
-    content: '';
-    display: block;
-    width: 32px;
-    height: 1px;
-    background: var(--stone-light);
-    flex-shrink: 0;
-  }
-
-  .page-hero__heading {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(48px, 5vw, 80px);
-    font-weight: 400;
-    line-height: 1.05;
-    color: var(--charcoal);
-    letter-spacing: -0.02em;
-    opacity: 0;
-    animation: fadeUp 0.8s ease 0.35s forwards;
-  }
-
-  .page-hero__heading em {
-    font-style: italic;
-    color: var(--terracotta);
-  }
-
-  .page-hero__right {
-    opacity: 0;
-    animation: fadeUp 0.8s ease 0.5s forwards;
-  }
-
-  .page-hero__intro {
-    font-family: 'Libre Baskerville', serif;
-    font-size: 16px;
-    line-height: 1.9;
-    color: var(--charcoal-mid);
-    margin-bottom: 32px;
-  }
-
-  .page-hero__divider {
-    width: 48px;
-    height: 1px;
-    background: var(--terracotta);
-    margin-bottom: 32px;
-  }
-
-  .page-hero__sub {
-    font-family: 'Libre Baskerville', serif;
-    font-size: 14px;
-    line-height: 1.85;
-    color: var(--stone);
-  }
-
-  /* ─── BELIEF SECTION ──────────────────────────────── */
-
-  .belief {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    min-height: 70vh;
-  }
-
-  .belief__image {
-    position: relative;
-    overflow: hidden;
-    background: #D9D3C8;
-    min-height: 500px;
-  }
-
-  .belief__image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-
-  .belief__image-placeholder {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .belief__image-placeholder span {
-    font-family: 'Tenor Sans', sans-serif;
-    font-size: 10px;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--stone-light);
-  }
-
-  .belief__content {
-    padding: 80px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    background: var(--charcoal);
-  }
-
-  .belief__label {
-    font-family: 'Tenor Sans', sans-serif;
-    font-size: 10px;
-    letter-spacing: 0.35em;
-    text-transform: uppercase;
-    color: var(--stone-light);
-    margin-bottom: 40px;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-  }
-
-  .belief__label::before {
-    content: '';
-    display: block;
-    width: 32px;
-    height: 1px;
-    background: var(--stone-light);
-    flex-shrink: 0;
-  }
-
-  .belief__heading {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(28px, 2.8vw, 42px);
-    font-weight: 400;
-    color: var(--cream);
-    line-height: 1.2;
-    margin-bottom: 32px;
-    letter-spacing: -0.01em;
-  }
-
-  .belief__heading em { font-style: italic; color: #E89B7A; }
-
-  .belief__divider {
-    width: 48px;
-    height: 1px;
-    background: var(--terracotta);
-    margin-bottom: 32px;
-  }
-
-  .belief__body {
-    font-family: 'Libre Baskerville', serif;
-    font-size: 14px;
-    line-height: 1.9;
-    color: #D4CCBD;
-  }
-
-  .belief__body p + p { margin-top: 20px; }
-
-  /* ─── FOUNDERS ────────────────────────────────────── */
-
-  .founders {
-    padding: 120px 56px;
-    background: var(--cream);
-  }
-
-  .founders__header {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    margin-bottom: 80px;
-    padding-bottom: 40px;
-    border-bottom: 1px solid rgba(196,185,168,0.4);
-  }
-
-  .founders__label {
-    font-family: 'Tenor Sans', sans-serif;
-    font-size: 10px;
-    letter-spacing: 0.35em;
-    text-transform: uppercase;
-    color: var(--stone);
-    display: flex;
-    align-items: center;
-    gap: 16px;
-  }
-
-  .founders__label::before {
-    content: '';
-    display: block;
-    width: 32px;
-    height: 1px;
-    background: var(--stone-light);
-    flex-shrink: 0;
-  }
-
-  .founders__heading {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(32px, 3vw, 48px);
-    font-weight: 400;
-    color: var(--charcoal);
-    letter-spacing: -0.01em;
-  }
-
-  .founders__heading em { font-style: italic; }
-
-  .founders__grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2px;
-  }
-
-  .founder-card {
-    background: #EDE8DF;
-    padding: 64px 56px;
-    position: relative;
-  }
-
-
-
-  .founder-card__number {
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-    font-size: 11px;
-    color: var(--terracotta);
-    margin-bottom: 16px;
-    opacity: 0.7;
-  }
-
-  .founder-card__name {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(28px, 2.5vw, 40px);
-    font-weight: 400;
-    color: var(--charcoal);
-    line-height: 1.15;
-    margin-bottom: 8px;
-    letter-spacing: -0.01em;
-  }
-
-  .founder-card__name em { font-style: italic; }
-
-  .founder-card__title {
-    font-family: 'Tenor Sans', sans-serif;
-    font-size: 10px;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--stone);
-    margin-bottom: 32px;
-  }
-
-  .founder-card__divider {
-    width: 32px;
-    height: 1px;
-    background: var(--terracotta);
-    margin-bottom: 28px;
-  }
-
-  .founder-card__bio {
-    font-family: 'Libre Baskerville', serif;
-    font-size: 14px;
-    line-height: 1.9;
-    color: var(--charcoal-mid);
-  }
-
-  .founder-card__bio p + p { margin-top: 16px; }
-
-  /* ─── WHAT WE DO ──────────────────────────────────── */
-
-  .what-we-do {
-    padding: 120px 56px;
-    background: var(--charcoal);
-  }
-
-  .what-we-do__header {
-    margin-bottom: 80px;
-    padding-bottom: 40px;
-    border-bottom: 1px solid rgba(196,185,168,0.15);
-  }
-
-  .what-we-do__label {
-    font-family: 'Tenor Sans', sans-serif;
-    font-size: 10px;
-    letter-spacing: 0.35em;
-    text-transform: uppercase;
-    color: var(--stone-light);
-    margin-bottom: 32px;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-  }
-
-  .what-we-do__label::before {
-    content: '';
-    display: block;
-    width: 32px;
-    height: 1px;
-    background: var(--stone-light);
-    flex-shrink: 0;
-  }
-
-  .what-we-do__heading {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(32px, 3vw, 52px);
-    font-weight: 400;
-    color: var(--cream);
-    letter-spacing: -0.01em;
-    line-height: 1.15;
-    max-width: 600px;
-  }
-
-  .what-we-do__heading em { font-style: italic; color: #E89B7A; }
-
-  .what-we-do__grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2px;
-  }
-
-  .direction-card {
-    background: rgba(255,255,255,0.03);
-    padding: 64px 56px;
-    border: 1px solid rgba(196,185,168,0.1);
-    transition: background 0.3s;
-  }
-
-  .direction-card:hover { background: rgba(255,255,255,0.06); }
-
-  .direction-card__number {
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-    font-size: 11px;
-    color: var(--terracotta);
-    margin-bottom: 24px;
-    opacity: 0.7;
-  }
-
-  .direction-card__heading {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(22px, 2vw, 30px);
-    font-weight: 400;
-    color: var(--cream);
-    line-height: 1.25;
-    margin-bottom: 24px;
-    letter-spacing: -0.01em;
-  }
-
-  .direction-card__heading em { font-style: italic; color: #E89B7A; }
-
-  .direction-card__body {
-    font-family: 'Libre Baskerville', serif;
-    font-size: 14px;
-    line-height: 1.9;
-    color: #D4CCBD;
-  }
-
-  .direction-card__tags {
-    margin-top: 32px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-
-  .tag {
-    font-family: 'Tenor Sans', sans-serif;
-    font-size: 9px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--stone-light);
-    border: 1px solid rgba(196,185,168,0.25);
-    padding: 6px 12px;
-  }
-
-  /* ─── WHY GLASSHOUSE ──────────────────────────────── */
-
-  .why {
-    padding: 120px 56px;
-    background: var(--cream);
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 120px;
-    align-items: center;
-  }
-
-  .why__label {
-    font-family: 'Tenor Sans', sans-serif;
-    font-size: 10px;
-    letter-spacing: 0.35em;
-    text-transform: uppercase;
-    color: var(--stone);
-    margin-bottom: 32px;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-  }
-
-  .why__label::before {
-    content: '';
-    display: block;
-    width: 32px;
-    height: 1px;
-    background: var(--stone-light);
-    flex-shrink: 0;
-  }
-
-  .why__heading {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(32px, 3vw, 48px);
-    font-weight: 400;
-    color: var(--charcoal);
-    line-height: 1.2;
-    margin-bottom: 32px;
-    letter-spacing: -0.01em;
-  }
-
-  .why__heading em { font-style: italic; color: var(--terracotta); }
-
-  .why__divider {
-    width: 48px;
-    height: 1px;
-    background: var(--terracotta);
-    margin-bottom: 32px;
-  }
-
-  .why__body {
-    font-family: 'Libre Baskerville', serif;
-    font-size: 15px;
-    line-height: 1.9;
-    color: var(--charcoal-mid);
-  }
-
-  .why__body p + p { margin-top: 20px; }
-
-  .why__right {
-    position: relative;
-  }
-
-  .why__quote {
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-    font-size: clamp(22px, 2.5vw, 34px);
-    color: var(--charcoal);
-    line-height: 1.4;
-    letter-spacing: -0.01em;
-    padding-left: 32px;
-    border-left: 2px solid var(--terracotta);
-  }
-
-  /* ─── CTA STRIP ───────────────────────────────────── */
-
-  .cta-strip {
-    background: var(--charcoal);
-    padding: 100px 56px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 40px;
-  }
-
-  .cta-strip__left { max-width: 560px; }
-
-  .cta-strip__label {
-    font-family: 'Tenor Sans', sans-serif;
-    font-size: 10px;
-    letter-spacing: 0.35em;
-    text-transform: uppercase;
-    color: var(--stone-light);
-    margin-bottom: 24px;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-  }
-
-  .cta-strip__label::before {
-    content: '';
-    display: block;
-    width: 32px;
-    height: 1px;
-    background: var(--stone-light);
-    flex-shrink: 0;
-  }
-
-  .cta-strip__heading {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(28px, 2.8vw, 44px);
-    font-weight: 400;
-    color: var(--cream);
-    line-height: 1.2;
-    letter-spacing: -0.01em;
-  }
-
-  .cta-strip__heading em { font-style: italic; color: #E89B7A; }
-
-  .cta-strip__link {
-    display: inline-flex;
-    align-items: center;
-    gap: 14px;
-    font-family: 'Tenor Sans', sans-serif;
-    font-size: 11px;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--cream);
-    text-decoration: none;
-    border-bottom: 1px solid var(--cream);
     padding-bottom: 4px;
     transition: color 0.3s, border-color 0.3s;
-    white-space: nowrap;
   }
+  .cta__link:hover { color: var(--terracotta); border-color: var(--terracotta); }
+  .cta__link:hover .arrow { transform: translateX(5px); }
+  .arrow { display: inline-block; transition: transform 0.3s; }
 
-  .cta-strip__link:hover {
-    color: #E89B7A;
-    border-color: #E89B7A;
-  }
-
-  .cta-strip__link:hover .arrow { transform: translateX(5px); }
-
-  .arrow {
-    display: inline-block;
-    transition: transform 0.3s;
-  }
-
-  /* ─── FOOTER ──────────────────────────────────────── */
-
-  footer {
-    background: var(--charcoal);
-    padding: 0 56px 48px;
-    border-top: 1px solid rgba(196,185,168,0.1);
-  }
-
-  .footer__top {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 40px;
-    padding: 64px 0;
-    border-bottom: 1px solid rgba(196,185,168,0.1);
-    margin-bottom: 40px;
-  }
-
-  .footer__brand-name {
-    font-family: 'Playfair Display', serif;
-    font-size: 28px;
-    font-weight: 400;
-    color: var(--cream);
-    margin-bottom: 16px;
-    letter-spacing: -0.01em;
-  }
-
-  .footer__brand-name em { font-style: italic; color: #E89B7A; }
-
-  .footer__tagline {
-    font-family: 'Libre Baskerville', serif;
-    font-style: italic;
-    font-size: 13px;
-    color: #D4CCBD;
-    line-height: 1.7;
-  }
-
-  .footer__col-label {
-    font-family: 'Tenor Sans', sans-serif;
-    font-size: 9px;
-    letter-spacing: 0.35em;
-    text-transform: uppercase;
-    color: #B8AC97;
-    margin-bottom: 28px;
-  }
-
-  .footer__links {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-  }
-
-  .footer__links a {
-    font-family: 'Tenor Sans', sans-serif;
-    font-size: 11px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: #D4CCBD;
-    text-decoration: none;
-    transition: color 0.3s;
-  }
-
-  .footer__links a:hover { color: var(--cream); }
-
-  .footer__email {
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-    font-size: 15px;
-    color: var(--cream);
-    text-decoration: none;
-    display: block;
-    margin-bottom: 8px;
-    transition: color 0.3s;
-  }
-
-  .footer__email:hover { color: #E89B7A; }
-
-  .footer__location {
-    font-family: 'Tenor Sans', sans-serif;
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: #B8AC97;
-  }
-
-  .footer__bottom {
+  /* ── FOOTER ── */
+  .footer {
+    border-top: 1px solid var(--stone-light);
+    padding: 40px 64px;
     display: flex;
     align-items: center;
     justify-content: space-between;
   }
-
-  .footer__copy {
-    font-family: 'Tenor Sans', sans-serif;
+  .footer__left {
+    font-family: var(--font-label);
     font-size: 10px;
-    letter-spacing: 0.15em;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: #B8AC97;
+    color: var(--stone);
+    line-height: 1.8;
   }
-
-  .footer__mark {
-    font-family: 'Playfair Display', serif;
+  .footer__right {
+    font-family: var(--font-display);
     font-style: italic;
-    font-size: 11px;
-    color: #B8AC97;
+    font-size: 12px;
+    color: var(--stone);
+    letter-spacing: 0.03em;
   }
 
-  /* ─── SCROLL ANIMATIONS ───────────────────────────── */
-
-  .reveal {
-    opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
-  }
-
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
+  /* ── ANIMATIONS ── */
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(20px); }
     to   { opacity: 1; transform: translateY(0); }
   }
 
-  /* ─── RESPONSIVE ──────────────────────────────────── */
+  /* ── SPIRITUAL SECTION ── */
+  .spiritual {
+    background: var(--cream-dark);
+    border-top: 1px solid var(--stone-light);
+    border-bottom: 1px solid var(--stone-light);
+    padding: 100px 64px;
+  }
+  .spiritual__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .spiritual__header {
+    margin-bottom: 64px;
+  }
+  .spiritual__label {
+    font-family: var(--font-label);
+    font-size: 10px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--stone);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .spiritual__label::before {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: var(--stone);
+  }
+  .spiritual__heading {
+    font-family: var(--font-display);
+    font-size: clamp(30px, 3vw, 44px);
+    font-weight: 400;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    max-width: 700px;
+  }
+  .spiritual__heading em { font-style: italic; }
+  .spiritual__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    border-top: 1px solid var(--stone-light);
+    padding-top: 64px;
+  }
+  .spiritual-card__name {
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--charcoal);
+    margin-bottom: 6px;
+  }
+  .spiritual-card__tradition {
+    font-family: var(--font-label);
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    margin-bottom: 28px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid var(--stone-light);
+  }
+  .spiritual-card__body {
+    font-family: var(--font-body);
+    font-size: 14px;
+    line-height: 1.9;
+    color: var(--ink);
+  }
+  .spiritual-card__body p + p { margin-top: 18px; }
 
-  @media (max-width: 1024px) {
-    .what-we-do__grid { grid-template-columns: 1fr; }
-    .founders__grid { grid-template-columns: 1fr; }
-    .footer__top { grid-template-columns: 1fr 1fr; }
+  /* ── RESPONSIVE ── */
+  @media (max-width: 960px) {
+    .nav { padding: 24px 32px; }
+    .nav__links { gap: 24px; }
+    .hero { padding: 80px 32px 60px; }
+    .philosophy { grid-template-columns: 1fr; gap: 48px; padding: 80px 32px; }
+    .philosophy__left { position: static; }
+    .photo-section { padding: 60px 32px; }
+    .team-section { padding: 80px 32px; }
+    .team { grid-template-columns: 1fr; gap: 64px; }
+    .spiritual { padding: 80px 32px; }
+    .spiritual__grid { grid-template-columns: 1fr; gap: 48px; }
+    .partnership { grid-template-columns: 1fr; gap: 40px; padding: 80px 32px; }
+    .cta-section { padding: 80px 32px; }
+    .footer { flex-direction: column; gap: 16px; text-align: center; padding: 32px; }
   }
 
-  @media (max-width: 860px) {
-    nav { padding: 20px 24px; }
-    .nav__links { display: none; }
-
-    .page-hero {
-      grid-template-columns: 1fr;
-      padding: 120px 24px 72px;
-      gap: 48px;
-    }
-
-    .belief { grid-template-columns: 1fr; }
-    .belief__content { padding: 56px 32px; }
-
-    .founders { padding: 80px 24px; }
-    .founders__header { flex-direction: column; gap: 24px; align-items: flex-start; }
-    .founder-card { padding: 48px 32px; }
-
-    .what-we-do { padding: 80px 24px; }
-    .direction-card { padding: 48px 32px; }
-
-    .why {
-      grid-template-columns: 1fr;
-      padding: 80px 24px;
-      gap: 56px;
-    }
-
-    .cta-strip {
-      flex-direction: column;
-      align-items: flex-start;
-      padding: 80px 24px;
-    }
-
-    footer { padding: 0 24px 36px; }
-    .footer__top { grid-template-columns: 1fr; gap: 48px; }
-    .footer__bottom { flex-direction: column; gap: 12px; }
-  }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
-  <a href="/" class="nav__wordmark">Glasshouse Studio</a>
+<!-- ── NAV ── -->
+<nav class="nav">
+  <a href="/index.html" class="nav__wordmark">Glasshouse Studio</a>
   <ul class="nav__links">
-    <li><a href="/services">Services</a></li>
-    <li><a href="/ecosystem">Ecosystem</a></li>
-    <li><a href="/about" class="active">About</a></li>
+    <li><a href="/glasshouse-services.html">Services</a></li>
+    <li><a href="/ecosystem.html">Ecosystem</a></li>
+    <li><a href="/about.html" aria-current="page">About</a></li>
+    <li><a href="/contact.html">Contact</a></li>
   </ul>
-  <a href="/contact" class="nav__contact">Contact</a>
 </nav>
 
-<!-- PAGE HERO -->
-<section class="page-hero">
-  <div class="page-hero__left">
-    <p class="page-hero__label">About the Studio</p>
-    <h1 class="page-hero__heading">
-      Built from<br>
-      <em>lived experience.</em>
-    </h1>
-  </div>
-  <div class="page-hero__right">
-    <p class="page-hero__intro">
-      Glasshouse Studio is an inclusive design and business strategy studio founded by Jacob Cogan and Irvin Hale. We are designers, builders, and strategists who believe the world needs more businesses that exist for a reason beyond selling things people can be convinced they need.
+<!-- ── HERO ── -->
+<header class="hero">
+  <p class="hero__label">About the Studio</p>
+  <h1 class="hero__heading">
+    Built on the belief that good design<br>
+    belongs to <em>everyone.</em>
+  </h1>
+</header>
+
+<hr class="full-rule">
+
+<!-- ── PHILOSOPHY ── -->
+<section class="philosophy" aria-label="Our philosophy">
+  <div class="philosophy__left">
+    <p class="philosophy__label">Why We Exist</p>
+    <h2 class="philosophy__heading">
+      Designed environments<br>
+      for <em>genuine growth.</em>
+    </h2>
+    <div class="philosophy__accent"></div>
+    <p class="philosophy__intro">
+      A glasshouse doesn't fight the weather. It creates the right conditions inside so that what you are growing has a real chance. That is the idea behind everything we do.
     </p>
-    <div class="page-hero__divider"></div>
-    <p class="page-hero__sub">
-      We work with people who want to build something better — and with organizations that are ready to stop designing for the average person and start designing for everyone.
+  </div>
+  <div class="philosophy__right">
+    <div class="philosophy__body">
+      <p>Glasshouse Studio is an inclusive design and business strategy studio founded by Jacob Cogan and Daniel Goerz. We are designers, builders, and strategists who believe the world needs more businesses that exist for a reason — not just a market gap, but a genuine reason to be.</p>
+      <p>We kept seeing the same problem: organizations with good intentions building systems that quietly left people out. Not out of malice — out of habit, speed, and designing for an imaginary average person who does not actually exist.</p>
+    </div>
+    <p class="philosophy__pull">
+      Designing for the edges makes everything stronger. That is not an idealistic position — it is a practical one.
     </p>
-  </div>
-</section>
-
-<!-- BELIEF -->
-<section class="belief">
-  <div class="belief__image reveal">
-    <img src="chairs.jpg" alt="A collection of mismatched chairs — every one different, every one belonging" />
-  </div>
-  <div class="belief__content">
-    <p class="belief__label reveal">What We Believe</p>
-    <h2 class="belief__heading reveal">
-      Designing for the edges makes<br>
-      <em>everything stronger.</em>
-    </h2>
-    <div class="belief__divider reveal"></div>
-    <div class="belief__body reveal">
-      <p>Most businesses are designed for the average customer. The problem is the average customer does not really exist.</p>
-      <p>When you start with the people a system has failed — the ones who are overwhelmed, excluded, working around something that was never built for them — you end up building something stronger for everyone. Not as a gesture toward inclusion, but because designing for real human variation produces better outcomes than designing for a fictional average.</p>
-      <p>Glasshouse Studio exists for purpose-driven founders and organizations who want to build businesses and systems that are commercially real and genuinely useful to the world — without having to learn every hard lesson from scratch.</p>
+    <div class="philosophy__body">
+      <p>When you start with the people a system has failed, you end up building something better for everyone. Our work combines strategy, design, technology, and operational thinking — brought together in a way that feels collaborative rather than transactional, because the best outcomes we have been part of happened when we were genuinely inside the problem.</p>
     </div>
   </div>
 </section>
 
-<!-- FOUNDERS -->
-<section class="founders">
-  <div class="founders__header reveal">
-    <p class="founders__label">The Founders</p>
-    <h2 class="founders__heading">
-      Two founders.<br><em>One shared conviction.</em>
-    </h2>
-  </div>
-
-  <div class="founders__grid">
-    <div class="founder-card reveal">
-
-      <p class="founder-card__number">01</p>
-      <h3 class="founder-card__name">Jacob<br><em>Cogan</em></h3>
-      <p class="founder-card__title">Co-Founder</p>
-      <div class="founder-card__divider"></div>
-      <div class="founder-card__bio">
-        <p>Jacob is an industrial designer, product leader, projection mapper, artist, and community builder. As VP of Product at Habitat Learn, he helped design Messenger Pigeon from its foundations — drawing directly from his lived experience with learning disabilities to build a tool around how attention, memory, and learning actually work, not how institutions assume they work.</p>
-        <p>His background in industrial design informs how he approaches every project: as systems that exist in bodies, spaces, materials, and communities — not just on screens. His creative practice spans painting, software tools, projection mapping, TouchDesigner experiences, and interdisciplinary workshops in Ottawa.</p>
-      </div>
-    </div>
-
-    <div class="founder-card reveal">
-
-      <p class="founder-card__number">02</p>
-      <h3 class="founder-card__name">Irvin<br><em>Hale</em></h3>
-      <p class="founder-card__title">Co-Founder</p>
-      <div class="founder-card__divider"></div>
-      <div class="founder-card__bio">
-        <p>Irvin Hale is an accessibility entrepreneur, strategist, and founder. As CEO and co-founder of a multi-million dollar EdTech company and Apple ecosystem partner — he has worked closely with colleges, universities, disability service offices, students, faculty, and institutional executives to redesign how post-secondary institutions support students.</p>
-        <p>His academic background spans behavioral support, human development, educational psychology, and applied behaviour analysis. Before building companies, he spent thousands of hours doing volunteer work and public speaking to multilingual audiences — work that shaped how he thinks about trust, communication, and what it means to design for someone who has never seen themselves reflected in the systems they are asked to use.</p>
-      </div>
+<!-- ── PHOTO ── -->
+<div class="photo-section">
+  <div class="photo-section__inner">
+    <p class="photo-section__label">Jacob &amp; Daniel</p>
+    <!-- Replace the div below with:
+         <img src="images/jacob-daniel.jpg" alt="Jacob Cogan and Daniel Goerz" class="photo-real" />
+         when your photo is ready. -->
+    <div class="photo-placeholder">
+      <p class="photo-placeholder__label">Jacob Cogan &amp; Daniel Goerz</p>
+      <p class="photo-placeholder__sub">Professional photo — coming soon</p>
     </div>
   </div>
-</section>
-
-<!-- WHAT WE DO -->
-<section class="what-we-do">
-  <div class="what-we-do__header reveal">
-    <p class="what-we-do__label">What We Do</p>
-    <h2 class="what-we-do__heading">
-      We work in<br><em>two directions.</em>
-    </h2>
-  </div>
-
-  <div class="what-we-do__grid">
-    <div class="direction-card reveal">
-      <p class="direction-card__number">01</p>
-      <h3 class="direction-card__heading">
-        Purpose-driven founders<br>building <em>better businesses.</em>
-      </h3>
-      <p class="direction-card__body">If you are starting something — a product, a service, a social enterprise, a community platform — and you want it to be commercially viable and genuinely useful to the world, we want to help you get there. We bring strategy, design, accessibility expertise, technology thinking, grant knowledge, and a network of collaborators. We have built this kind of thing before. We know what works and what does not.</p>
-      <div class="direction-card__tags">
-        <span class="tag">Strategy</span>
-        <span class="tag">Brand & Design</span>
-        <span class="tag">Grant Access</span>
-        <span class="tag">Equity Partnership</span>
-      </div>
-    </div>
-
-    <div class="direction-card reveal">
-      <p class="direction-card__number">02</p>
-      <h3 class="direction-card__heading">
-        Established organizations<br><em>redesigning their systems.</em>
-      </h3>
-      <p class="direction-card__body">Public sector institutions, corporations, universities, and government bodies often have the intention to serve everyone — but the systems, services, and products they have built tell a different story. We help teams move from good intentions to real implementation: redesigning services, products, and experiences so they actually work for the full range of people who depend on them.</p>
-      <div class="direction-card__tags">
-        <span class="tag">Inclusive Design</span>
-        <span class="tag">Accessibility</span>
-        <span class="tag">UDL</span>
-        <span class="tag">Public Sector</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- WHY GLASSHOUSE -->
-<section class="why">
-  <div class="why__left reveal">
-    <p class="why__label">Why Glasshouse</p>
-    <h2 class="why__heading">
-      A designed environment<br>for <em>growth.</em>
-    </h2>
-    <div class="why__divider"></div>
-    <div class="why__body">
-      <p>A glasshouse protects what is emerging while giving it the conditions it needs to become stronger. It is structured, but alive. Intentional, but adaptive. It blurs the line between inside and outside — creating something that is neither purely shelter nor purely nature, but something more honest than either.</p>
-      <p>Good design does not force one way of being. It makes room for difference. It creates the conditions for people, ideas, products, and organizations to grow — regardless of what is happening outside. Glasshouse Studio exists to help build those conditions.</p>
-      <p>For the businesses that should exist but do not yet. For the institutions that want to do better and need help getting there. For the people who have been working around broken systems long enough.</p>
-    </div>
-  </div>
-  <div class="why__right reveal">
-    <blockquote class="why__quote">
-      "When you design for the edges of human experience, you almost always make something better for everyone. That is not a trade-off. That is the work."
-    </blockquote>
-  </div>
-</section>
-
-<!-- CTA STRIP -->
-<div class="cta-strip">
-  <div class="cta-strip__left reveal">
-    <p class="cta-strip__label">Work with us</p>
-    <h2 class="cta-strip__heading">
-      Ready to build something<br><em>that actually matters?</em>
-    </h2>
-  </div>
-  <a href="/contact" class="cta-strip__link reveal">
-    Get in touch
-    <span class="arrow">→</span>
-  </a>
 </div>
 
-<!-- FOOTER -->
-<footer>
-  <div class="footer__top">
-    <div>
-      <p class="footer__brand-name">Glasshouse<br><em>Studio</em></p>
-      <p class="footer__tagline">Where the overlooked take root.</p>
-    </div>
-    <div>
-      <p class="footer__col-label">Navigation</p>
-      <ul class="footer__links">
-        <li><a href="/services">Services</a></li>
-        <li><a href="/ecosystem">Ecosystem</a></li>
-        <li><a href="/about">About</a></li>
-        <li><a href="/contact">Contact</a></li>
-      </ul>
-    </div>
-    <div>
-      <p class="footer__col-label">Get in touch</p>
-      <a href="mailto:hello@theglasshousestudio.ca" class="footer__email">hello@theglasshousestudio.ca</a>
-      <p class="footer__location">Toronto · Canada</p>
+<!-- ── TEAM ── -->
+<section class="team-section" aria-label="The founders">
+  <div class="team-section__inner">
+    <p class="team-section__label">The Founders</p>
+    <div class="team">
+
+      <!-- JACOB FIRST -->
+      <div class="team-member">
+        <span class="team-member__number">01</span>
+        <h2 class="team-member__name">Jacob Cogan</h2>
+        <p class="team-member__role">Co-Founder &amp; Design Lead</p>
+        <div class="team-member__bio">
+          <p>Jacob is an industrial designer, product leader, projection mapper, artist, and community builder. His entry point into design was personal — growing up with learning disabilities gave him an early, lived understanding of what it feels like when systems are not built for you. That experience became the foundation of everything he makes.</p>
+          <p>His career spans product design, accessibility infrastructure, community-centred experiences, and interdisciplinary making. He thinks of accessibility not as a compliance checkbox but as the starting point for design that is genuinely useful — the kind that holds up for the full range of people who encounter it.</p>
+          <p>Jacob brings a maker's instinct to every problem: the belief that the right thing to do is usually to build something and see what it teaches you.</p>
+        </div>
+        <div class="team-member__tags">
+          <span class="tag">Industrial Design</span>
+          <span class="tag">Product Leadership</span>
+          <span class="tag">Accessibility</span>
+          <span class="tag">Community Design</span>
+          <span class="tag">Art &amp; Installation</span>
+        </div>
+      </div>
+
+      <!-- DANIEL SECOND -->
+      <div class="team-member">
+        <span class="team-member__number">02</span>
+        <h2 class="team-member__name">Daniel Goerz</h2>
+        <p class="team-member__role">Co-Founder &amp; Strategy Lead</p>
+        <div class="team-member__bio">
+          <p>Daniel has spent his career working across education, technology, disability inclusion, and operations — not because the path was planned, but because the thread connecting all of it has always been the same: systems that should work for people, and the gap between that intention and the reality.</p>
+          <p>He previously co-founded an EdTech company that grew to meaningful scale — a Canadian Apple ecosystem partner that fundamentally changed how students with disabilities learn, without making them feel like outsiders in the process. Along the way he developed a deep fluency in operational design, building the kind of back-end efficiency that lets organizations improve their margins without losing what makes them good.</p>
+          <p>His academic background spans behavioural support, human development, educational psychology, and applied behaviour analysis. In practice, that means he thinks carefully about how people actually move through systems — and where the friction is costing more than anyone realizes. Glasshouse Studio is the distillation of everything that work taught him.</p>
+        </div>
+        <div class="team-member__tags">
+          <span class="tag">Strategy</span>
+          <span class="tag">Inclusive Design</span>
+          <span class="tag">EdTech</span>
+          <span class="tag">Operations</span>
+          <span class="tag">Behavioural Science</span>
+          <span class="tag">Public Sector</span>
+        </div>
+      </div>
+
     </div>
   </div>
-  <div class="footer__bottom">
-    <p class="footer__copy">© 2026 Glasshouse Studio Inc. All rights reserved.</p>
-    <p class="footer__mark">Create something honest, built to last.</p>
+</section>
+
+<!-- ── SPIRITUAL ── -->
+<section class="spiritual" aria-label="Faith and spiritual backgrounds">
+  <div class="spiritual__inner">
+    <div class="spiritual__header">
+      <p class="spiritual__label">Values &amp; Formed Perspective</p>
+      <h2 class="spiritual__heading">
+        The work we do is shaped by<br>
+        <em>how we have chosen to live.</em>
+      </h2>
+    </div>
+    <div class="spiritual__grid">
+
+      <div class="spiritual-card">
+        <p class="spiritual-card__name">Jacob Cogan</p>
+        <p class="spiritual-card__tradition">Contemplative Practice</p>
+        <div class="spiritual-card__body">
+          <p>Jacob has practiced within the Theravāda Buddhist tradition for years, including extended time at monasteries in Ontario and British Columbia. It has shaped a simple working principle: understand what is actually there before you reach for a solution.</p>
+        </div>
+      </div>
+
+      <div class="spiritual-card">
+        <p class="spiritual-card__name">Daniel Goerz</p>
+        <p class="spiritual-card__tradition">Faith Formation &amp; Service</p>
+        <div class="spiritual-card__body">
+          <p>Daniel spent over a decade in structured faith formation, volunteering thousands of hours in direct community service and delivering public discourses to multilingual congregations across seven languages. That background is foundational to how he thinks about service, communication, and who any given system is actually built for.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── PARTNERSHIP ── -->
+<section class="partnership" aria-label="Our partnership">
+  <div>
+    <h2 class="partnership__heading">
+      Six years.<br>
+      Different strengths.<br>
+      <em>One shared instinct.</em>
+    </h2>
+  </div>
+  <div>
+    <div class="partnership__body">
+      <p>Jacob and Daniel met in Toronto and have been designing together for over six years. What started as a shared passion for empathetic, people-centred design became a genuine creative partnership — built on trust, complementary skills, and a working chemistry that consistently produces better output than either would arrive at alone.</p>
+      <p>They share a love of art, a deep connection to the people they design for, and a commitment to showing up as the best version of themselves in the work. On every engagement, you get both of them — not a pitch from the founders followed by a handoff to junior staff.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<section class="cta-section" aria-label="Get in touch">
+  <p class="cta__label">Work With Us</p>
+  <h2 class="cta__heading">
+    Tell us what you are working on.
+  </h2>
+  <p class="cta__body">
+    Most people who reach out are not entirely sure what they need yet. That is fine — often part of the work is figuring that out together.
+  </p>
+  <a href="/contact.html" class="cta__link">
+    Start the conversation
+    <span class="arrow">→</span>
+  </a>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer class="footer">
+  <div class="footer__left">
+    Glasshouse Studio<br>
+    17930356 Canada Inc. · Toronto, Canada<br>
+    © 2026. All rights reserved.
+  </div>
+  <div class="footer__right">
+    Where the overlooked take root.
   </div>
 </footer>
-
-<script>
-  const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.12 });
-  reveals.forEach(el => observer.observe(el));
-</script>
 
 </body>
 </html>

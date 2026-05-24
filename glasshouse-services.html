@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Services — Glasshouse Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Tenor+Sans&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+
+  /* ── TOKENS ── */
+  :root {
+    --cream:       #F5F0E8;
+    --cream-dark:  #EDE7DA;
+    --stone:       #C4B9A8;
+    --stone-light: #DDD6CB;
+    --terracotta:  #C4704A;
+    --sage:        #7A8C6E;
+    --charcoal:    #1A1A18;
+    --ink:         #3A3A36;
+    --gold:        #B89A5A;
+
+    --font-display: 'Playfair Display', serif;
+    --font-label:   'Tenor Sans', sans-serif;
+    --font-body:    'Libre Baskerville', serif;
+  }
+
+  /* ── RESET ── */
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--charcoal);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NAV ── */
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 28px 64px;
+    border-bottom: 1px solid var(--stone-light);
+    position: sticky;
+    top: 0;
+    background: var(--cream);
+    z-index: 100;
+  }
+
+  .nav__wordmark {
+    font-family: var(--font-display);
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    color: var(--charcoal);
+    text-decoration: none;
+  }
+
+  .nav__links {
+    display: flex;
+    gap: 40px;
+    list-style: none;
+  }
+
+  .nav__links a {
+    font-family: var(--font-label);
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav__links a:hover,
+  .nav__links a[aria-current="page"] {
+    color: var(--terracotta);
+  }
+
+  /* ── PAGE HERO ── */
+  .hero {
+    padding: 120px 64px 80px;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: end;
+  }
+
+  .hero__label {
+    font-family: var(--font-label);
+    font-size: 10px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--stone);
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .hero__label::before {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: var(--stone);
+    flex-shrink: 0;
+  }
+
+  .hero__heading {
+    font-family: var(--font-display);
+    font-size: clamp(48px, 5vw, 76px);
+    font-weight: 400;
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    color: var(--charcoal);
+  }
+
+  .hero__heading em {
+    font-style: italic;
+    display: block;
+  }
+
+  .hero__intro {
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.9;
+    color: var(--ink);
+    padding-top: 8px;
+  }
+
+  .hero__intro p + p {
+    margin-top: 20px;
+  }
+
+  .hero__rule {
+    grid-column: 1 / -1;
+    height: 1px;
+    background: var(--stone-light);
+    margin-top: 16px;
+  }
+
+  /* ── PHILOSOPHY BAND ── */
+  .philosophy {
+    background: var(--charcoal);
+    color: var(--cream);
+    padding: 80px 64px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .philosophy::before {
+    content: '"';
+    font-family: var(--font-display);
+    font-size: 400px;
+    color: rgba(255,255,255,0.03);
+    position: absolute;
+    top: -80px;
+    left: 32px;
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .philosophy__inner {
+    max-width: 860px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .philosophy__label {
+    font-family: var(--font-label);
+    font-size: 10px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--stone);
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .philosophy__label::before {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: var(--stone);
+  }
+
+  .philosophy__quote {
+    font-family: var(--font-display);
+    font-size: clamp(22px, 2.5vw, 32px);
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1.55;
+    color: var(--cream);
+    margin-bottom: 40px;
+  }
+
+  .philosophy__body {
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.9;
+    color: var(--stone-light);
+    columns: 2;
+    column-gap: 56px;
+  }
+
+  .philosophy__body p + p {
+    margin-top: 16px;
+  }
+
+  /* ── SERVICES GRID ── */
+  .services {
+    padding: 100px 64px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .services__header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 64px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--stone-light);
+  }
+
+  .services__header-label {
+    font-family: var(--font-label);
+    font-size: 10px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--stone);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .services__header-label::before {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: var(--stone);
+  }
+
+  .services__count {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 13px;
+    color: var(--stone);
+  }
+
+  .services__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+
+  .service {
+    padding: 52px 48px 52px 0;
+    border-bottom: 1px solid var(--stone-light);
+    position: relative;
+    transition: background 0.3s;
+  }
+
+  .service:nth-child(even) {
+    padding-left: 48px;
+    padding-right: 0;
+    border-left: 1px solid var(--stone-light);
+  }
+
+  .service:nth-last-child(-n+2) {
+    border-bottom: none;
+  }
+
+  .service__number {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 11px;
+    color: var(--stone);
+    letter-spacing: 0.05em;
+    margin-bottom: 24px;
+    display: block;
+  }
+
+  .service__title {
+    font-family: var(--font-display);
+    font-size: clamp(20px, 1.8vw, 26px);
+    font-weight: 400;
+    line-height: 1.25;
+    color: var(--charcoal);
+    margin-bottom: 20px;
+    letter-spacing: -0.01em;
+    max-width: 340px;
+  }
+
+  .service__title em {
+    font-style: italic;
+  }
+
+  .service__divider {
+    width: 32px;
+    height: 1px;
+    background: var(--terracotta);
+    margin-bottom: 20px;
+  }
+
+  .service__body {
+    font-family: var(--font-body);
+    font-size: 14px;
+    line-height: 1.85;
+    color: var(--ink);
+    max-width: 420px;
+  }
+
+  /* ── ENGAGEMENT MODELS ── */
+  .engagement {
+    background: var(--cream-dark);
+    border-top: 1px solid var(--stone-light);
+    border-bottom: 1px solid var(--stone-light);
+    padding: 100px 64px;
+  }
+
+  .engagement__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .engagement__header {
+    margin-bottom: 64px;
+  }
+
+  .engagement__label {
+    font-family: var(--font-label);
+    font-size: 10px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--stone);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .engagement__label::before {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: var(--stone);
+  }
+
+  .engagement__heading {
+    font-family: var(--font-display);
+    font-size: clamp(30px, 3vw, 44px);
+    font-weight: 400;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+
+  .engagement__heading em {
+    font-style: italic;
+  }
+
+  .engagement__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+  }
+
+  .tier {
+    padding: 48px 40px 48px 0;
+    border-right: 1px solid var(--stone-light);
+    position: relative;
+  }
+
+  .tier:last-child {
+    border-right: none;
+    padding-right: 0;
+    padding-left: 0;
+  }
+
+  .tier:not(:first-child) {
+    padding-left: 40px;
+  }
+
+  .tier__name {
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--charcoal);
+    margin-bottom: 12px;
+  }
+
+  .tier__price {
+    font-family: var(--font-label);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    margin-bottom: 24px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--stone-light);
+  }
+
+  .tier__body {
+    font-family: var(--font-body);
+    font-size: 13px;
+    line-height: 1.85;
+    color: var(--ink);
+  }
+
+  /* ── FOOTER / CTA ── */
+  .cta-section {
+    padding: 120px 64px;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .cta__heading {
+    font-family: var(--font-display);
+    font-size: clamp(36px, 3.5vw, 52px);
+    font-weight: 400;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+  }
+
+  .cta__heading em {
+    font-style: italic;
+    display: block;
+  }
+
+  .cta__body {
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.9;
+    color: var(--ink);
+    margin-bottom: 48px;
+  }
+
+  .cta__body p + p {
+    margin-top: 16px;
+  }
+
+  .cta__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    font-family: var(--font-label);
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--charcoal);
+    text-decoration: none;
+    border-bottom: 1px solid var(--charcoal);
+    padding-bottom: 4px;
+    transition: color 0.3s, border-color 0.3s;
+  }
+
+  .cta__link:hover {
+    color: var(--terracotta);
+    border-color: var(--terracotta);
+  }
+
+  .cta__link:hover .arrow {
+    transform: translateX(5px);
+  }
+
+  .arrow {
+    display: inline-block;
+    transition: transform 0.3s;
+  }
+
+  /* ── PAGE FOOTER ── */
+  .footer {
+    border-top: 1px solid var(--stone-light);
+    padding: 40px 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .footer__left {
+    font-family: var(--font-label);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--stone);
+    line-height: 1.8;
+  }
+
+  .footer__right {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 12px;
+    color: var(--stone);
+    letter-spacing: 0.03em;
+  }
+
+  /* ── FADE-IN ANIMATION ── */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(24px);
+    animation: fadeUp 0.8s ease forwards;
+  }
+
+  .fade-up:nth-child(1) { animation-delay: 0.05s; }
+  .fade-up:nth-child(2) { animation-delay: 0.15s; }
+  .fade-up:nth-child(3) { animation-delay: 0.25s; }
+  .fade-up:nth-child(4) { animation-delay: 0.35s; }
+  .fade-up:nth-child(5) { animation-delay: 0.45s; }
+  .fade-up:nth-child(6) { animation-delay: 0.55s; }
+
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 960px) {
+    .nav { padding: 24px 32px; }
+    .nav__links { gap: 24px; }
+
+    .hero {
+      grid-template-columns: 1fr;
+      gap: 40px;
+      padding: 80px 32px 60px;
+    }
+
+    .philosophy { padding: 60px 32px; }
+    .philosophy__body { columns: 1; }
+
+    .services { padding: 80px 32px; }
+    .services__grid { grid-template-columns: 1fr; }
+
+    .service { padding: 44px 0; }
+    .service:nth-child(even) {
+      padding-left: 0;
+      border-left: none;
+    }
+    .service:nth-last-child(-n+2) { border-bottom: 1px solid var(--stone-light); }
+    .service:last-child { border-bottom: none; }
+
+    .engagement { padding: 80px 32px; }
+    .engagement__grid { grid-template-columns: 1fr 1fr; gap: 0; }
+
+    .tier {
+      padding: 40px 32px 40px 0;
+      border-right: none;
+      border-bottom: 1px solid var(--stone-light);
+    }
+    .tier:nth-child(even) { padding-left: 32px; border-left: 1px solid var(--stone-light); }
+    .tier:last-child { border-bottom: none; }
+
+    .cta-section {
+      grid-template-columns: 1fr;
+      gap: 40px;
+      padding: 80px 32px;
+    }
+
+    .footer {
+      flex-direction: column;
+      gap: 16px;
+      text-align: center;
+      padding: 32px;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .engagement__grid { grid-template-columns: 1fr; }
+    .tier:nth-child(even) { padding-left: 0; border-left: none; }
+    .tier { border-bottom: 1px solid var(--stone-light); }
+  }
+
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav class="nav">
+  <a href="/" class="nav__wordmark">Glasshouse Studio</a>
+  <ul class="nav__links">
+    <li><a href="/glasshouse-services.html" aria-current="page">Services</a></li>
+    <li><a href="/ecosystem.html">Ecosystem</a></li>
+    <li><a href="/about.html">About</a></li>
+    <li><a href="/contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ── HERO ── -->
+<header class="hero">
+  <div class="fade-up">
+    <p class="hero__label">What We Do</p>
+    <h1 class="hero__heading">
+      We build things<br>
+      that hold up.<br>
+      <em>And belong.</em>
+    </h1>
+  </div>
+  <div class="fade-up" style="animation-delay:0.2s">
+    <p class="hero__intro">
+      <p>We are living through one of the more interesting moments to be building something. The old playbooks are not quite working anymore, and the new ones are still being written.</p>
+      <p>The organizations doing this well are leaner, more honest with their customers, more thoughtful about technology, and more intentional about the kind of culture they want to grow. Glasshouse Studio exists to help you be one of them.</p>
+    </p>
+  </div>
+  <div class="hero__rule"></div>
+</header>
+
+<!-- ── PHILOSOPHY BAND ── -->
+<section class="philosophy">
+  <div class="philosophy__inner">
+    <p class="philosophy__label">Our Thinking</p>
+    <p class="philosophy__quote">
+      A glasshouse is a designed environment for growth. The weather outside is unpredictable. What matters is whether what you are building has the right conditions inside to thrive.
+    </p>
+    <div class="philosophy__body">
+      <p>We work with founders, public servants, business owners, faith leaders, and institutions designing products, services, and ways of operating that feel grounded in where things are actually heading — not where they used to be.</p>
+      <p>Our work combines strategy, design, technology, and operational thinking, brought together in a way that feels collaborative rather than transactional. Jacob and Daniel are genuine creative partners — different strengths, shared instincts, and a working chemistry that makes the output noticeably better. You get both of us on every engagement.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── SERVICES ── -->
+<section class="services" aria-label="Services">
+  <div class="services__header">
+    <p class="services__header-label">Services</p>
+    <span class="services__count">Six disciplines</span>
+  </div>
+
+  <div class="services__grid">
+
+    <!-- 01 -->
+    <article class="service">
+      <span class="service__number">01</span>
+      <h2 class="service__title">Designing for the people who will <em>actually use it.</em></h2>
+      <div class="service__divider"></div>
+      <p class="service__body">Most products and systems are designed for an imaginary average customer who does not really exist. We design for the real range of people who will live with what you are making — which produces better outcomes, more loyalty, and far fewer expensive misses. We are particularly drawn to founders building outside the lines and public sector teams who genuinely care about the citizens they serve.</p>
+    </article>
+
+    <!-- 02 -->
+    <article class="service">
+      <span class="service__number">02</span>
+      <h2 class="service__title">Building products and platforms that <em>work in the real world.</em></h2>
+      <div class="service__divider"></div>
+      <p class="service__body">Websites, apps, internal tools, customer experiences. We work across the full lifecycle — figuring out what should exist, designing it, building it, and making sure it keeps working after launch.</p>
+    </article>
+
+    <!-- 03 -->
+    <article class="service">
+      <span class="service__number">03</span>
+      <h2 class="service__title">Helping teams operate smarter — without <em>losing what makes them good.</em></h2>
+      <div class="service__divider"></div>
+      <p class="service__body">Efficiency has been getting a bad name lately, and for good reason. We are not here to help anyone downsize for the sake of it. We help organizations use technology, design, and clear thinking to free their teams up — so people get to do their best work, with more room left over for the lives they actually want.</p>
+    </article>
+
+    <!-- 04 -->
+    <article class="service">
+      <span class="service__number">04</span>
+      <h2 class="service__title">Bringing AI into your work <em>in a way that ages well.</em></h2>
+      <div class="service__divider"></div>
+      <p class="service__body">We favour smaller, offline, on-device models built for specific use cases — less energy, better privacy, no data leaving the room. More importantly, we help organizations use AI to amplify what their people are good at: the creativity, the judgment, the human parts of the work that no model is going to replace.</p>
+    </article>
+
+    <!-- 05 -->
+    <article class="service">
+      <span class="service__number">05</span>
+      <h2 class="service__title">Helping founders build businesses <em>that hold up.</em></h2>
+      <div class="service__divider"></div>
+      <p class="service__body">Strategy, positioning, business model design, go-to-market thinking, grant identification, and the kind of honest feedback that is hard to get when everyone around you is being polite. We have built companies. We know what tends to work and what tends to fall apart.</p>
+    </article>
+
+    <!-- 06 -->
+    <article class="service">
+      <span class="service__number">06</span>
+      <h2 class="service__title">Redesigning institutional systems so they <em>actually serve people.</em></h2>
+      <div class="service__divider"></div>
+      <p class="service__body">Public sector institutions, universities, and large organizations often have the intention to serve everyone — but the systems they have built tell a different story. We help teams move from good intentions to genuine, working implementation.</p>
+    </article>
+
+  </div>
+</section>
+
+<!-- ── ENGAGEMENT MODELS ── -->
+<section class="engagement" aria-label="How we work together">
+  <div class="engagement__inner">
+    <div class="engagement__header">
+      <p class="engagement__label">How We Work Together</p>
+      <h2 class="engagement__heading">
+        There is no single right way<br>
+        to work with us — it depends<br>
+        on <em>what you are building.</em>
+      </h2>
+    </div>
+
+    <div class="engagement__grid">
+
+      <div class="tier">
+        <p class="tier__name">Short-Term Projects</p>
+        <p class="tier__price">$175 – $250 CAD / hr</p>
+        <p class="tier__body">Defined scope, defined deliverable. Could be a website, a product audit, an operational review, a design sprint, or a focused piece of work that needs a clear beginning and end.</p>
+      </div>
+
+      <div class="tier">
+        <p class="tier__name">Ongoing Partnership</p>
+        <p class="tier__price">From $150 CAD / hr + equity</p>
+        <p class="tier__body">You want us in your corner over time — strategy, design, recurring projects as your organization grows and changes. We take a modest equity stake (6–8%) because we become genuinely invested in what you are building.</p>
+      </div>
+
+      <div class="tier">
+        <p class="tier__name">Custom AI Builds</p>
+        <p class="tier__price">Project fee + monthly maintenance</p>
+        <p class="tier__body">We design and build AI agents specifically for your organization, your knowledge, and your community. Pricing depends on scope and complexity.</p>
+      </div>
+
+      <div class="tier">
+        <p class="tier__name">Glasshouse Community</p>
+        <p class="tier__price">$20 CAD / mo · $175 CAD / yr</p>
+        <p class="tier__body">A platform built around how we think and what we have learned. Launching soon.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<section class="cta-section" aria-label="Get in touch">
+  <div>
+    <h2 class="cta__heading">
+      Ready when<br>
+      <em>you are.</em>
+    </h2>
+  </div>
+  <div>
+    <div class="cta__body">
+      <p>Most people who reach out are not entirely sure what they need yet. That is fine — often part of the work is figuring that out together.</p>
+      <p>Tell us what you are working on, where you are stuck, and what you want to build. We will take it from there.</p>
+    </div>
+    <a href="/contact.html" class="cta__link">
+      Start the conversation
+      <span class="arrow">→</span>
+    </a>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer class="footer">
+  <div class="footer__left">
+    Glasshouse Studio<br>
+    17930356 Canada Inc. · Toronto, Canada<br>
+    © 2026. All rights reserved.
+  </div>
+  <div class="footer__right">
+    Where the overlooked take root.
+  </div>
+</footer>
+
+</body>
+</html>
